@@ -25,7 +25,7 @@ export default function Menu({ hideRoutes }) {
   const [activeSubMenu, setActiveSubMenu] = useState(null);
   const [activeInsideSubMenu, setActiveInsideSubMenu] = useState(null);
   const [showFullScreenMenu, setShowFullScreenMenu] = useState(false);
-  const { notifications, categories, partners, setProducts, setFilteredProducts, products } = useContext(GlobalContext);
+  const { notifications, session,categories, partners, setProducts, setFilteredProducts, products } = useContext(GlobalContext);
 
 
   function handleClick() {
@@ -36,18 +36,32 @@ export default function Menu({ hideRoutes }) {
 
 
   function handleClickSubMenu(subMenu) {
+    if(subMenu!="configurations"){
+
     subMenu === activeSubMenu
       ? setActiveSubMenu(null)
       : setActiveSubMenu(subMenu);
+    }else if( subMenu!="configurations" && session.name=="Laissa"){
+      subMenu === activeSubMenu
+      ? setActiveSubMenu(null)
+      : setActiveSubMenu(subMenu);
+    }
   }
 
   function handleClickInsideSubMenu(insideSubMenu) {
+    if(insideSubMenu!="configurations"){
     insideSubMenu === activeInsideSubMenu
       ? setActiveInsideSubMenu(null)
       : setActiveInsideSubMenu(insideSubMenu)
+    }else if( insideSubMenu!="configurations" && session.name=="Laissa"){
+      insideSubMenu === activeInsideSubMenu
+      ? setActiveSubMenu(null)
+      : setActiveSubMenu(insideSubMenu);
+    }
   }
 
   function handleNavigate(route, filterType, filter) {
+    if(session.name=='Laissa' ){
     if (filterType) {
       setFilteredProducts(() => products.filter(el => el[filterType] === filter));
 
@@ -64,7 +78,7 @@ export default function Menu({ hideRoutes }) {
       getAllProducts().then(products => setProducts(products));
       navigate(route);
     }
-
+  }
     setShowFullScreenMenu(false);
   }
 
@@ -90,6 +104,7 @@ export default function Menu({ hideRoutes }) {
                 <img src={location.pathname === '/assistente-virtual' ? DashboardActiveIcon : DashboardIcon} alt="" />
                 Laissa Virtual
               </span>
+              
               <span onClick={() => handleClickSubMenu('products')}>
                 <img src={ProductsIcon} alt="" />
                 Atendimentos
