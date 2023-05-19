@@ -29,7 +29,7 @@ export default function Menu({ hideRoutes }) {
 
 
   function handleClick() {
-    window.location.assign("https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2Fqr%2F4QTZW34UNDNWK1&e=AT2gbqfulPNUu8BuCEYOYFUNpK1980NDYezEhJdKZ2071kfgTIEF0M5DqQhYGSAeSGUV0jyPnU2cdFXLdiHe-hvMxjet6eo1ZMpI4w" ,'_blank');
+    window.location.assign("whatsapp://qr/4QTZW34UNDNWK1?autoload=1&amp;app_absent=0" ,'_blank');
 
     
   }
