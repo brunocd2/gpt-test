@@ -18,7 +18,7 @@ import { GlobalContext } from "../../contexts/global";
 
 export default function Users() {
   const [permissions, setPermissions] = useState([
-    'Administrador', 'Gerente', 'Permissão #1', 'Permissão #2',
+    'Administrador', 'Cliente',
   ])
 
   const [selectedPermission, setSelectedPermission] = useState(null);
@@ -66,10 +66,10 @@ export default function Users() {
 
   function handleDeleteUser() {
     deleteUser(selectedUser).then(() => {
-      toastSuccess("Usuário deletado com sucesso!");
+      toastSuccess("Cliente deletado com sucesso!");
       setUsers(old => old.filter(user => user.id !== selectedUser.id));
     }).catch(error => {
-      toastError("Erro ao deletar usuário!");
+      toastError("Erro ao deletar Cliente!");
       console.log('Delete user error:', error);
     });
   }
@@ -80,7 +80,7 @@ export default function Users() {
 
     if (selectedUser) {
       editUser(selectedUser, name, lastName, email).then((editedUser) => {
-        toastSuccess("Usuário editado com sucesso!");
+        toastSuccess("Cliente editado com sucesso!");
         setIsLoading(false);
         setEmail('');
         setName('');
@@ -93,13 +93,13 @@ export default function Users() {
         });
         setModalOpened(false);
       }).catch(err => {
-        toastError("Erro ao editar usuário");
+        toastError("Erro ao editar Cliente");
         setIsLoading(false);
         console.log(err);
       })
     } else {
       newUser({ name, last_name: lastName, email }).then(() => {
-        toastSuccess("Usuário cadastrado com sucesso!");
+        toastSuccess("Cliente cadastrado com sucesso!");
         setIsLoading(false);
         setEmail('');
         setName('');
@@ -107,7 +107,7 @@ export default function Users() {
         setUsers(old => [...old, { name, lastName, email }]);
         setModalOpened(false);
       }).catch(err => {
-        toastError("Erro ao cadastrar usuário");
+        toastError("Erro ao cadastrar Cliente");
         setIsLoading(false);
         console.log(err);
       });
@@ -152,7 +152,7 @@ export default function Users() {
       <Modal opened={modalOpened} setOpened={setModalOpened} customModalContent>
         <CreateUserModalContent>
           <header>
-            <h2>{selectedUser ? 'Editar usuário' : 'Cadastrar novo usuário'}</h2>
+            <h2>{selectedUser ? 'Editar Cliente' : 'Cadastrar novo Cliente'}</h2>
           </header>
           <form onSubmit={handleSubmit}>
             <span className="row">
@@ -198,10 +198,10 @@ export default function Users() {
       <Modal opened={deleteModalOpened} setOpened={setDeleteModalOpened} customModalContent>
         <CreateUserModalContent>
           <header>
-            <h2>Deletar usuário</h2>
+            <h2>Deletar Cliente</h2>
           </header>
           <form>
-            <h3>Tem certeza que deseja deletar o usuário:</h3>
+            <h3>Tem certeza que deseja deletar o Cliente:</h3>
             <p>Nome: <span>{selectedUser?.name} {selectedUser?.last_name}</span></p>
             <p>E-mail: <span>{selectedUser?.email}</span></p>
             <footer className="deleteFooter">
@@ -213,12 +213,12 @@ export default function Users() {
       </Modal>
 
       <Toaster position="top-right" reverseOrder={false} />
-      <h1>Cadastrar novo usuário</h1>
-      <p>Aqui você encontra a lista e cadastro de usuários.</p>
+      <h1>Cadastrar novo Cliente</h1>
+      <p>Aqui você encontra a lista e cadastro de Clientes.</p>
       <div className="headerRow">
-        <Button text="Cadastrar usuário" color="branding" onClick={handleOpenModal} />
+        <Button text="Cadastrar Cliente" color="branding" onClick={handleOpenModal} />
         <span>
-          <label>Buscar usuário:</label>
+          <label>Buscar Cliente:</label>
           <InputWithIcon
             placeholder="Insira um nome"
             setValue={setSearch}
@@ -245,8 +245,8 @@ export default function Users() {
               <td>{user.email}</td>
 
               <td className="role">
-                <span className={index % 2 === 0 ? "adm" : 'manager'} />
-                {index % 2 === 0 ? 'Administrador' : 'Gerente'}
+                <span className={index % 2 === 0 ? "adm" : 'cli'} />
+                {index % 4 === 0 ? 'Administrador' : 'Cliente'}
               </td>
 
               <td className="actions">

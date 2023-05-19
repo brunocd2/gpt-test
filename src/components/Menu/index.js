@@ -16,52 +16,41 @@ import SettingsIcon from '../../assets/icons/menu/settings.png';
 import LogoutIcon from '../../assets/icons/menu/logout.png';
 import HamburguerIcon from '../../assets/icons/menu/hamburguer.png';
 import { getAllProducts, getProductsByCategory, getProductsByPartner } from "../../services/api";
- 
 
 export default function Menu({ hideRoutes }) {
-
   const location = useLocation();
   const navigate = useNavigate();
   const [activeSubMenu, setActiveSubMenu] = useState(null);
   const [activeInsideSubMenu, setActiveInsideSubMenu] = useState(null);
   const [showFullScreenMenu, setShowFullScreenMenu] = useState(false);
-  const { notifications, session,categories, partners, setProducts, setFilteredProducts, products } = useContext(GlobalContext);
+  const { notifications, categories, partners, setProducts, setFilteredProducts, products } = useContext(GlobalContext);
 
+  function handleClickSubMenu(subMenu) {
+    subMenu === activeSubMenu
+      ? setActiveSubMenu(null)
+      : setActiveSubMenu(subMenu);
+  }
+
+  function handleClickInsideSubMenu(insideSubMenu) {
+    insideSubMenu === activeInsideSubMenu
+      ? setActiveInsideSubMenu(null)
+      : setActiveInsideSubMenu(insideSubMenu)
+  }
 
   function handleClick() {
-    window.location.assign("whatsapp://qr/4QTZW34UNDNWK1?autoload=1&amp;app_absent=0" ,'_blank');
+    window.location.assign("whatsapp://qr/4QTZW34UNDNWK1?autoload=1&amp;app_absent=0");
+
+    
+  }
+
+  function handleClickMaps() {
+    window.location.assign("  https://www.google.com/maps/place/Cevally+Cabeleireiros/@-27.4287905,-48.4590829,17z/data=!3m1!4b1!4m6!3m5!1s0x95274378a09ea60b:0x92da23838394b3a2!8m2!3d-27.4287953!4d-48.456508!16s%2Fg%2F11fpl1lppy" ,'_blank');
 
     
   }
 
 
-  function handleClickSubMenu(subMenu) {
-    if(subMenu!="configurations"){
-
-    subMenu === activeSubMenu
-      ? setActiveSubMenu(null)
-      : setActiveSubMenu(subMenu);
-    }else if( subMenu!="configurations" && session.name=="Laissa"){
-      subMenu === activeSubMenu
-      ? setActiveSubMenu(null)
-      : setActiveSubMenu(subMenu);
-    }
-  }
-
-  function handleClickInsideSubMenu(insideSubMenu) {
-    if(insideSubMenu!="configurations"){
-    insideSubMenu === activeInsideSubMenu
-      ? setActiveInsideSubMenu(null)
-      : setActiveInsideSubMenu(insideSubMenu)
-    }else if( insideSubMenu!="configurations" && session.name=="Laissa"){
-      insideSubMenu === activeInsideSubMenu
-      ? setActiveSubMenu(null)
-      : setActiveSubMenu(insideSubMenu);
-    }
-  }
-
   function handleNavigate(route, filterType, filter) {
-    if(session.name=='Laissa' ){
     if (filterType) {
       setFilteredProducts(() => products.filter(el => el[filterType] === filter));
 
@@ -78,7 +67,7 @@ export default function Menu({ hideRoutes }) {
       getAllProducts().then(products => setProducts(products));
       navigate(route);
     }
-  }
+
     setShowFullScreenMenu(false);
   }
 
@@ -96,18 +85,17 @@ export default function Menu({ hideRoutes }) {
           <span className="divider" />
           <nav>
             <div>
-              <h2>Operações</h2>
+              <h2>Meus Procedimentos</h2>
               <span
                 onClick={() => handleNavigate('/assistente-virtual')}
                 className={location.pathname === '/assistente-virtual' ? 'active' : ''}
               >
                 <img src={location.pathname === '/assistente-virtual' ? DashboardActiveIcon : DashboardIcon} alt="" />
-                Laissa Virtual
+                Assistente Virtual
               </span>
-              
               <span onClick={() => handleClickSubMenu('products')}>
                 <img src={ProductsIcon} alt="" />
-                Atendimentos
+                Procedimentos
                 <img
                   className="rightIcon" alt=""
                   src={activeSubMenu === 'products' ? ArrowUpIcon : ArrowDownIcon}
@@ -117,16 +105,32 @@ export default function Menu({ hideRoutes }) {
                 <div className="subMenuContent">
                   <span
                     onClick={() => handleClick()}
-                    className={location.pathname === '/produtos-cadastrados' ? 'active' : ''}
                   >
                     Agendar novo Procedimento
                   </span>
                   
+                  
+                  <span
+                    onClick={() => handleNavigate('/')}
+                  >
+                    Agendados
+                  </span>
+
+                  <span
+                onClick={() => handleNavigate('/Maps')}
+                className={location.pathname === '/Maps' ? 'active' : ''}
+              >
+                    Como chegar
+                  </span>
                 </div>
+                
+                
               }
+              
             </div>
+            
             <div className="mid">
-              <h2>Mensageria</h2>
+              <h2>Novidades</h2>
               <span
                 onClick={() => handleNavigate('/notificacoes')}
                 className={location.pathname === '/notificacoes' ? 'active' : 'notification'}
@@ -142,9 +146,13 @@ export default function Menu({ hideRoutes }) {
                   </span>
                 }
               </span>
-              <span>
-                <img src={MailIcon} alt="-" />
-                Mensagens
+              <span
+              onClick={() => handleNavigate('/Procedimentos')}
+              className={location.pathname === '/Procedimentos' ? 'active' : 'notification'}
+           
+              >
+                <img src={DashboardActiveIcon} alt="-" />
+                Procedimentos Disponíveis
               </span>
             </div>
             <div>
@@ -153,7 +161,7 @@ export default function Menu({ hideRoutes }) {
               <span onClick={() => handleClickSubMenu('configurations')}>
                 <img src={SettingsIcon} alt="" />
 
-                Configurações
+                Gestão
 
                 <img
                   className="rightIcon" alt=""
@@ -166,14 +174,26 @@ export default function Menu({ hideRoutes }) {
                   <span onClick={() => handleNavigate('/usuarios')}
                     className={location.pathname === '/usuarios' ? 'active' : ''}
                   >
-                    Cadastrar Usuário
+                    Lista de Clientes
                   </span>
 
                   <span
-                    onClick={() => handleNavigate('/produtos-cadastrados')}
+                    onClick={() => handleNavigate('/dashboard')}
                   // className={location.pathname === '/produtos-cadastrados' ? 'active' : ''}
                   >
-                    Configurações
+                    Dashboard
+                  </span>
+                  <span
+                    onClick={() => handleNavigate('/NovaConsulta')}
+                  // className={location.pathname === '/produtos-cadastrados' ? 'active' : ''}
+                  >
+                    Cadastrar Consulta
+                  </span>
+                  <span
+                    onClick={() => handleNavigate('/produtos-cadastrados')}
+                    className={location.pathname === '/produtos-cadastrados' ? 'active' : ''}
+                  >
+                    Realizados
                   </span>
                 </div>
               }

@@ -41,10 +41,10 @@ export default function Dashboard() {
     diff: 0.0
   })
   const [pieChartData, setPieChartData] = useState([
-    ["Parceiro", "Vendas"],
-    ["Hippo", 0],
-    ["Zaffari", 0,],
-    ["Super pão", 0],
+    ["Procedimentos", "Vendas"],
+    ["Eletroterapia", 0],
+    ["Peelings ", 0,],
+    ["Carboxiterapia", 0],
   ]);
   const [barChartData, setBarChartData] = useState([
     ['', 'Última Entrada (un)', 'Última Saída (un)'],
@@ -62,7 +62,7 @@ export default function Dashboard() {
   const [searchResult, setSearchResult] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const metricsHeader = ['Parceiros', 'Estoque', 'Qtd. Últ-Entrada', 'Qtd. Últ-Saída'];
+  const metricsHeader = ['Procedimento',  'Qtd. Últ-Entrada', 'Qtd. Últ-Saída'];
   const categoriesOptions = ['Categoria', ...categories]
 
   const [metricsBody, setMetricsBody] = useState([]);
@@ -371,24 +371,135 @@ export default function Dashboard() {
     <DashboardWrapper>
       <DashboardHeader>
         <div>
-          <h1>Olá, {session.name}</h1>
+          <h1>Olá, {session.name} </h1>
           <small>Bem vindo(a) de volta!</small>
         </div>
         <img src={user.avatar} alt={session.name} />
       </DashboardHeader>
 
-      
-      <CardsArea>
-        <div className="cards" >
+      <DashboardFilterArea>
+        <div>
+          <label>Período:</label>
           <div>
-          <iframe  width="120%" frameborder = "0" margin-left="-2.5px" height="800px" src="https://brurei-power-stetic.hf.space/?__theme=light&__sign=eyJhbGciOiJFZERTQSJ9.eyJpYXQiOjE2ODQ0NjQ0NzgsInN1YiI6ImJydXJlaS9wb3dlci1zdGV0aWMiLCJleHAiOjE2ODQ1NTA4NzgsImlzcyI6Imh0dHBzOi8vaHVnZ2luZ2ZhY2UuY28ifQ.FOgA2jiTdsZkdX8XK6KsMUnWzAsflfXQToOY6uGFi67Q3_DuyPnBcG-MNMfHenlv85CasKMHdU2xjAdX5apDCA" ></iframe>
+            <select value={initialFilter} onChange={(e) => setInitialFilter(e.target.value)}>
+              {dates.map(date => <option key={date} value={date}>{date}</option>)}
+            </select>
 
+            <span />
+
+            <select value={finalFilter} onChange={(e) => setFinalFilter(e.target.value)}>
+              {dates.map(date => <option key={date} value={date}>{date}</option>)}
+            </select>
+          </div>
+        </div>
+
+      </DashboardFilterArea>
+
+      <CardsArea>
+        <div className="cards">
+          <div>
+            <select
+              onChange={e => setCategory(e.target.value)}
+              value={category}
+            >
+              {categoriesOptions.map(category =>
+                <option value={category} key={category}>{category}</option>)}
+            </select>
           </div>
 
+          <ChartsRow>
+            <BarCharts data={barChartData} />
+          </ChartsRow>
+
+          <PieChart data={pieChartData} />
+
+          <div className="cardRow" >
+            <Card
+              title="Clientes Novos"
+              value={clients.thisMonth.length + ` clientes`} gains={clients.diff.toFixed(2)}
+              detail={clients.lastMonth.length + " clientes - último mês"}
+            />
+          </div>
+
+          <Card
+            title="Total Geral de Procedimentos"
+            value={imports.thisMonth.length + " un."} gains={imports.diff.toFixed(2)}
+            detail={imports.lastMonth.length + " un. - último mês"}
+          />
+
+          <Card
+            title="Total Geral de Procedimentos ùnicos"
+            value={singleProducts.thisMonth.length + " un."} gains={singleProducts.diff.toFixed(2)}
+            detail={singleProducts.lastMonth.length + " un - último mês"}
+          />
+
+          <Card title="Procedimentos Realizadas Hoje" value={importsToday.length + " unidades"} noComparison />
+          <div className="filterProducts">
+            <InputWithIcon
+              placeholder="Filtre por procedimento"
+              setValue={setSearch}
+              value={search}
+              onEnter={handleSearch}
+              right={{ src: SearchIcon, onClick: handleSearch }}
+            />
+            {searchResult.length > 0 && !selectedProduct &&
+              <div className="searchResult">
+                {searchResult.map((product, index) =>
+                  <span key={index} onClick={() => setSearch(product.descricao_produto)}>
+                    {product.descricao_produto}
+                  </span>
+                )}
+              </div>
+            }
+          </div>
+
+          {selectedProduct &&
+            <DefaultDashboardContainer title="Resumo do Procedmento">
+              <h3>{selectedProduct.descricao_produto}</h3>
+              <ul>
+                <li>Cliente: {selectedProduct.parceiro}</li>
+                <li>Categoria: {selectedProduct.categoria}</li>
+                <li>Procedimento: {selectedProduct.exportador}</li>
+                <span />
+
+                <li>Data Entrada: {selectedProduct.dta_ult_compra && new Date(selectedProduct.dta_ult_compra).toLocaleDateString()}</li>
+                <li>Data Saída: {selectedProduct.dta_ult_saida && new Date(selectedProduct.dta_ult_saida).toLocaleDateString()}</li>
+                <span />
+
+                <li>Preço Entrada: R${selectedProduct.custo_ult_compra_cd.toFixed(2)}</li>
+                <li>Preço Saída: R${selectedProduct.preco_vda_alvim.toFixed(2)}</li>
+              </ul>
+            </DefaultDashboardContainer>
+          }
         </div>
 
       </CardsArea>
 
-         </DashboardWrapper>
+      <MetricProducts>
+        <h2>{category === 'Categoria' ? 'Métricas' : `Métricas da categoria: ${category}`}</h2>
+
+        <table>
+          <thead>
+            <tr>{metricsHeader.map((th, index) =>
+              <React.Fragment key={index}>
+                <th className={index > 1 ? 'center' : ''}>{th}</th>
+              </React.Fragment>
+            )}</tr>
+          </thead>
+
+          <tbody>
+            {metricsBody.map((tr, index) =>
+              <tr key={index}>
+                {tr.map((td, tdIndex) =>
+                  <React.Fragment key={tdIndex}>
+                    <td className={tdIndex > 1 ? 'center' : ''}>{td}</td>
+                  </React.Fragment>
+                )}
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </MetricProducts>
+    </DashboardWrapper>
   )
 }

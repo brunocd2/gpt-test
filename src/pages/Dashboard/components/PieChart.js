@@ -21,7 +21,7 @@ export default function PieChart({ data }) {
   };
 
   return (
-    <DefaultDashboardContainer title="Saídas x Parceiro (Categoria)" isChart isPieChart>
+    <DefaultDashboardContainer title="Saídas x Procedimento (Categoria)" isChart isPieChart>
       <Chart
         chartType='PieChart'
         data={data}

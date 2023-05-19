@@ -16,7 +16,7 @@ export default function Pagination({ limit, total, offset, setOffset, showPerPag
   return (
     <PaginationArea>
       <div>
-        Mostrando <span>{offset + 1} - {lastItem > total ? total : lastItem}</span> de <span>{total}</span> produtos
+        Mostrando <span>{offset + 1} - {lastItem > total ? total : lastItem}</span> de <span>{total}</span> pedidos
       </div>
       <ul>
         <li 

@@ -16,7 +16,7 @@ export default function BarChart({ data }) {
   }
 
   return (
-    <DefaultDashboardContainer title="Fluxo de Entrada e Saída (Categoria)" isChart isBarChart>
+    <DefaultDashboardContainer title="Fluxo de Procedimentos (Categoria)" isChart isBarChart>
       <Chart
         chartType='Bar'
         data={data}

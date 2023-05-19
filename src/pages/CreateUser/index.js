@@ -12,7 +12,7 @@ import { Toaster } from "react-hot-toast";
 
 export default function CreateUser() {
   const [permissions, setPermissions] = useState([
-    'Administrador', '', 'Gerente', '', '', ''
+    'Administrador', 'Cliente', 
   ])
 
   const [name, setName] = useState('');
@@ -26,14 +26,14 @@ export default function CreateUser() {
     setIsLoading(true);
 
     newUser({ name, last_name: lastName, email }).then(() => {
-      toastSuccess("Usuário cadastrado com sucesso!");
+      toastSuccess("Cliente cadastrado com sucesso!");
 
       setIsLoading(false);
       setName('');
       setEmail('');
       setLastName('');
     }).catch(err => {
-      toastError("Erro ao cadastrar usuário");
+      toastError("Erro ao cadastrar Cliente");
       setIsLoading(false);
       console.log(err);
     });
@@ -46,7 +46,7 @@ export default function CreateUser() {
       <br></br>
 
 <br></br>
-      <h3>Novo Usuário</h3>
+      <h3>Novo Cliente</h3>
       
       <form onSubmit={handleSubmit}>
         <span className="row">
