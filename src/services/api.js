@@ -18,17 +18,17 @@ export async function getProductsByPartner(partner) {
 }
 
 export async function login(userInfos) {
-  const response = await axios.post('/gpt/login', userInfos);
+  const response = await axios.post('/power/login', userInfos);
   return response.data.data;
 }
 
 export async function forgotPassword(email) {
-  const response = await axios.post('/gpt/forgot', { email });
+  const response = await axios.post('/power/forgot', { email });
   console.log('forgot pass response:', response.data);
 }
 
 export async function firstAccess(userInfos, newPassword) {
-  const response = await axios.post('/gpt/update_first_acess',
+  const response = await axios.post('/power/update_first_acess',
     { ...userInfos, password: newPassword }
   );
 
@@ -36,12 +36,12 @@ export async function firstAccess(userInfos, newPassword) {
 }
 
 export async function newUser(userInfos) {
-  const response = await axios.post('/gpt/', userInfos);
+  const response = await axios.post('/power/', userInfos);
   console.log('new user response:', response);
 }
 
 export async function getUsers() {
-  const response = await axios.get(`/gpt/find_all`);
+  const response = await axios.get(`/power/find_all`);
   return response.data.data;
 }
 
@@ -49,7 +49,7 @@ export async function editUser(userInfos, name, lastName, email) {
   const { email_verified_at, first_acess, id } = userInfos;
   console.log(userInfos)
 
-  const response = await axios.post('/gpt/update', {
+  const response = await axios.post('/power/update', {
     id,
     email,
     email_verified_at,
@@ -62,7 +62,7 @@ export async function editUser(userInfos, name, lastName, email) {
 }
 
 export async function deleteUser(user) {
-  const response = await axios.delete(`/gpt/delete?id=${user.id}`);
+  const response = await axios.delete(`/power/delete?id=${user.id}`);
   console.log('delete user response:', response);
 
   return response.data.data;

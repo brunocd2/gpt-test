@@ -371,7 +371,7 @@ export default function Dashboard() {
     <DashboardWrapper>
       <DashboardHeader>
         <div>
-          <h1>Olá, {session.name} {session.last_name}</h1>
+          <h1>Olá, {session.name}</h1>
           <small>Bem vindo(a) de volta!</small>
         </div>
         <img src={user.avatar} alt={session.name} />
@@ -381,7 +381,7 @@ export default function Dashboard() {
       <CardsArea>
         <div className="cards" >
           <div>
-          <iframe  width="120%" frameborder = "0" margin-left="-2.5px" height="800px" src="https://brurei-cd2-ai-internal.hf.space/?__theme=dark&__sign=eyJhbGciOiJFZERTQSJ9.eyJzdWIiOiJicnVyZWkvY2QyLWFpLWludGVybmFsIiwiZXhwIjoxNjgyNDUyMzgxLCJpc3MiOiJodWdnaW5nZmFjZS1tb29uIn0.clEm5YVAfdiBRuz7S6w7WOPo5PN0I44-5Mzj8NgQwh4qGLgkfQJ3T1B1mMOgmBp8DSQliT2626ueGd_n1WWdAg" ></iframe>
+          <iframe  width="120%" frameborder = "0" margin-left="-2.5px" height="800px" src="https://brurei-power-stetic.hf.space/?__theme=light&__sign=eyJhbGciOiJFZERTQSJ9.eyJpYXQiOjE2ODQ0NjQ0NzgsInN1YiI6ImJydXJlaS9wb3dlci1zdGV0aWMiLCJleHAiOjE2ODQ1NTA4NzgsImlzcyI6Imh0dHBzOi8vaHVnZ2luZ2ZhY2UuY28ifQ.FOgA2jiTdsZkdX8XK6KsMUnWzAsflfXQToOY6uGFi67Q3_DuyPnBcG-MNMfHenlv85CasKMHdU2xjAdX5apDCA" ></iframe>
 
           </div>
 

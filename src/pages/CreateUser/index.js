@@ -58,7 +58,7 @@ export default function CreateUser() {
 </span>
 <span className="row">
           <InputWithIcon
-            placeholder="Sobrenome *"
+            placeholder="Watsapp *"
             left={{ src: UsersIcon }}
             value={lastName} setValue={setLastName}
           />

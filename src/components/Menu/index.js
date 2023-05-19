@@ -16,14 +16,24 @@ import SettingsIcon from '../../assets/icons/menu/settings.png';
 import LogoutIcon from '../../assets/icons/menu/logout.png';
 import HamburguerIcon from '../../assets/icons/menu/hamburguer.png';
 import { getAllProducts, getProductsByCategory, getProductsByPartner } from "../../services/api";
+ 
 
 export default function Menu({ hideRoutes }) {
+
   const location = useLocation();
   const navigate = useNavigate();
   const [activeSubMenu, setActiveSubMenu] = useState(null);
   const [activeInsideSubMenu, setActiveInsideSubMenu] = useState(null);
   const [showFullScreenMenu, setShowFullScreenMenu] = useState(false);
   const { notifications, categories, partners, setProducts, setFilteredProducts, products } = useContext(GlobalContext);
+
+
+  function handleClick() {
+    window.location.assign("https://l.instagram.com/?u=https%3A%2F%2Fwa.me%2Fqr%2F4QTZW34UNDNWK1&e=AT2gbqfulPNUu8BuCEYOYFUNpK1980NDYezEhJdKZ2071kfgTIEF0M5DqQhYGSAeSGUV0jyPnU2cdFXLdiHe-hvMxjet6eo1ZMpI4w" ,'_blank');
+
+    
+  }
+
 
   function handleClickSubMenu(subMenu) {
     subMenu === activeSubMenu
@@ -78,11 +88,11 @@ export default function Menu({ hideRoutes }) {
                 className={location.pathname === '/assistente-virtual' ? 'active' : ''}
               >
                 <img src={location.pathname === '/assistente-virtual' ? DashboardActiveIcon : DashboardIcon} alt="" />
-                Assistente Virtual
+                Laissa Virtual
               </span>
               <span onClick={() => handleClickSubMenu('products')}>
                 <img src={ProductsIcon} alt="" />
-                Treinamento
+                Atendimentos
                 <img
                   className="rightIcon" alt=""
                   src={activeSubMenu === 'products' ? ArrowUpIcon : ArrowDownIcon}
@@ -91,10 +101,10 @@ export default function Menu({ hideRoutes }) {
               {activeSubMenu === 'products' &&
                 <div className="subMenuContent">
                   <span
-                    onClick={() => handleNavigate('/produtos-cadastrados')}
+                    onClick={() => handleClick()}
                     className={location.pathname === '/produtos-cadastrados' ? 'active' : ''}
                   >
-                    Inteligência Artificial
+                    Agendar novo Procedimento
                   </span>
                   
                 </div>

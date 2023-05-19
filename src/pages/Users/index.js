@@ -164,7 +164,7 @@ export default function Users() {
               />
               <InputWithIcon
                 placeholder="Insira o sobrenome"
-                label="Sobrenome"
+                label="Watsapp"
                 left={{ src: UsersIcon }}
                 value={lastName} setValue={setLastName}
               />
