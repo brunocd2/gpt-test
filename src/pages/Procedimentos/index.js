@@ -50,14 +50,14 @@ export default function Procedimentos() {
       
       <br></br>
         <span className="row">
-        <h5>* Eletroterapia, Ultrasom Estético, Iontoforese e Radiofreqüência Estética
+        <h5>*  Ultrasom Estético
 
 </h5>
 
 </span>
 <br></br>
         <span className="row">
-        <h5>* Laserterapia, Luz Intensa Pulsada e LED 
+        <h5>* Massagem Modeladora, Relaxante ou Linfática  
 
 </h5>
 
@@ -71,37 +71,37 @@ export default function Procedimentos() {
 </span>
 <br></br>
         <span className="row">
-        <h5>* Carboxiterapia</h5>
+        <h5>* Spa de Noivas</h5>
 
 </span>
 <br></br>
         <span className="row">
-        <h5>* Intradermoterapia</h5>
+        <h5>* Spa de Sobrancelhas</h5>
 
 </span>
 <br></br>
         <span className="row">
-        <h5>* Aplicação de toxina botulínica</h5>
+        <h5>* Detox Facial de toxina botulínica</h5>
 
 </span>
 <br></br>
         <span className="row">
-        <h5>* Aplicação de preenchimentos na derme</h5>
+        <h5>* Cílios</h5>
 
 </span>
 <br></br>
         <span className="row">
-        <h5>*  Preenchimentos semipermanentes, mesoterapia</h5>
+        <h5>*  MicroPigmentação de Sobrancelhas</h5>
 
 </span>
 <br></br>
         <span className="row">
-        <h5>* Procedimento Estético Injetável para Micro vasos (PEIM)</h5>
+        <h5>* MicroPigmentação de Lábios</h5>
 
 </span>
 <br></br>
         <span className="row">
-        <h5>* Fios de sustentação tecidual absorvíveis para fins estéticos</h5>
+        <h5>* HidraGloss</h5>
 
 </span>
 <br></br>
