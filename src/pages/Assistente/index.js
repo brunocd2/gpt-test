@@ -381,7 +381,7 @@ export default function Assistente() {
       <CardsArea>
         <div className="cards" >
           <div>
-          <iframe  width="120%" frameborder = "0" margin-left="-2.5px" height="800px" src="https://brurei-power-stetic.hf.space/?__theme=light&__sign=eyJhbGciOiJFZERTQSJ9.eyJpYXQiOjE2ODQ0NjQ0NzgsInN1YiI6ImJydXJlaS9wb3dlci1zdGV0aWMiLCJleHAiOjE2ODQ1NTA4NzgsImlzcyI6Imh0dHBzOi8vaHVnZ2luZ2ZhY2UuY28ifQ.FOgA2jiTdsZkdX8XK6KsMUnWzAsflfXQToOY6uGFi67Q3_DuyPnBcG-MNMfHenlv85CasKMHdU2xjAdX5apDCA" ></iframe>
+          <iframe  width="120%" frameborder = "0" margin-left="-2.5px" height="800px" src="https://brunopersona-power-stetic.hf.space" ></iframe>
 
           </div>
 
