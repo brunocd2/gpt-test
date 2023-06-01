@@ -375,13 +375,13 @@ export default function Assistente() {
           <small>Bem vindo(a) de volta!</small>
         </div>
         <img src={user.avatar} alt={session.name} />
-      </DashboardHeader>
+        <center><h2>Olá eu sou a Lalá, sua esteticista virtual. Estou aqui para tirar suas duvidas sobre procedimentos, agendamentos, preços, cuidados pré e pós operatórios etc. Tudo que sei foi minha mãe Laissa que me ensinou então fique tranquilo(@)</h2></center>
+        <center><img src="https://i.pinimg.com/474x/56/4e/de/564edecf02ba72bbe285ea304c013f76.jpg" width="200px"/></center>
 
-      
-      <CardsArea>
-        <div className="cards" >
+    </DashboardHeader><CardsArea>
+        <div className="cards">
           <div>
-          <iframe  width="120%" frameborder = "0" margin-left="-2.5px" height="800px" src="https://brunopersona-power-stetic.hf.space" ></iframe>
+            <iframe width="110%" frameborder="0" margin-left="-2.5px" height="800px" src="https://brunopersona-power-stetic.hf.space"></iframe>
 
           </div>
 
