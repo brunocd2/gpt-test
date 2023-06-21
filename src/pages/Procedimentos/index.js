@@ -43,73 +43,13 @@ export default function Procedimentos() {
     <CreateUserWrapper>
       <Toaster position="top-right" reverseOrder={false} />
       <br></br>
-      <br></br>
+      <div className="cards">
+          <div>
+            <iframe width="100%" frameborder="0" margin-left="-2.5px" height="800px" src="https://linkbio.co/5062113cmMYS9"></iframe>
 
-<br></br>
-      <h3>Procedimentos Da Nossa Estética</h3>
-      
-      <br></br>
-        <span className="row">
-        <h5>*  Ultrasom Estético
+          </div>
 
-</h5>
-
-</span>
-<br></br>
-        <span className="row">
-        <h5>* Massagem Modeladora, Relaxante ou Linfática  
-
-</h5>
-
-</span>
-<br></br>
-        <span className="row">
-        <h5>* Peelings químicos e Mecânicos 
-
-</h5>
-
-</span>
-<br></br>
-        <span className="row">
-        <h5>* Spa de Noivas</h5>
-
-</span>
-<br></br>
-        <span className="row">
-        <h5>* Spa de Sobrancelhas</h5>
-
-</span>
-<br></br>
-        <span className="row">
-        <h5>* Detox Facial de toxina botulínica</h5>
-
-</span>
-<br></br>
-        <span className="row">
-        <h5>* Cílios</h5>
-
-</span>
-<br></br>
-        <span className="row">
-        <h5>*  MicroPigmentação de Sobrancelhas</h5>
-
-</span>
-<br></br>
-        <span className="row">
-        <h5>* MicroPigmentação de Lábios</h5>
-
-</span>
-<br></br>
-        <span className="row">
-        <h5>* HidraGloss</h5>
-
-</span>
-<br></br>
-        <span className="row">
-        <h5>* Aplicação de substâncias para fins estéticos por via intramuscular</h5>
-
-</span>
-
+        </div>
 
     </CreateUserWrapper>
   )
